@@ -26,6 +26,7 @@ Once the Connection Strings are updated, let’s add the Migrations and Update t
 
 
 add-migration initial2 -context ApplicationDbContext
+
 add-migration initialIdentity2 -context IdentityContext
 
 
@@ -35,6 +36,7 @@ With the Migrations ready, let’s update the database now.
 
 
 update-database -context IdentityContext
+
 update-database -context ApplicationDbContext
 
 
@@ -49,8 +51,10 @@ SuperAdmin
 Admin
 Moderator
 Basic
+
 Here are the credentials for the default users.
 
 
 Email – superadmin@gmail.com / Password – 123Pa$$word!
+
 Email – basic@gmail.com / Password – 123Pa$$word!
