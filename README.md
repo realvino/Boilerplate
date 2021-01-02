@@ -1,86 +1,45 @@
 ﻿# Clean Architecture Boilerplate - ASP.NET Core 5.0 (WebApi & MVC)
 Clean Architecture Solution Template for ASP.NET Core 5.0. Built with Onion/Hexagonal Architecture and incorporates the most essential Packages your projects will ever need. Includes both WebApi and Web(MVC) Projects.
 
-# V1.0.0 is Released.
+Getting Started With ASP.NET Core Hero Boilerplate
+Let’s install the required the NuGet Package First. The download size is around 10 Mb. Open up Command Prompt and run the following command.
 
-[Get the NuGet Package from here!](https://www.nuget.org/packages/AspNetCoreHero.Boilerplate/)
+dotnet new --install AspNetCoreHero.Boilerplate
+Now what this does is, it installs the entire Solution Template on to your machine so that you can use the template as a starting point for your upcoming projects. Let’s see how to start generating solutions and configure them.
 
-[Getting Started - Quick Start Guide](https://codewithmukesh.com/blog/aspnet-core-hero-boilerplate-quick-start-guide/)
+Navigate to your Repository folder (any folder where you usually create your projects). Open up your command prompt and change the directory to your working folder. For this demonstration, I am going to create a WebApplication Solution for a Store. I will be naming it StoreManager and use the location as ‘D:\Repository\’.
 
-[View the Project Page](https://codewithmukesh.com/project/aspnet-core-hero-boilerplate/)
+cd D:\Repository\
 
-# The Vision
+Next, type in the following command to actually generate the Solution with your required Namespace. For this demonstation, I am using the name StoreManager.
 
-An idea to bring together the best and essential practices / pacakges of ASP.NET Core 5.0 along with Clean Hexagonal Architecture that can be a right fit for small/mid and enterprise level solutions.
-How easy would it be if you are able to run a single line of CLI command on your Console and you get a complete implementation in no time? That's the exact vision I have while building this full fledged Boilerplate template.
+dotnet new aspnetcorehero.boilerplate -n StoreManager
 
-## Technologies Used
+Once the Packages are done restoring, open up the appsettings.json of both the API and MVC Projects. Make sure that you add in valid Connection strings here. Here is how I set it up for my database server (MSSQL).
 
-- ASP.NET Core 5.0 WebAPI
-- ASP.NET Core 5.0 MVC
-- Entity Framework Core 5.0
+"ConnectionStrings": {
+  "ApplicationConnection": "Data Source=LAPTOP-7CS9KHVQ;Initial Catalog=StoreManager;Integrated Security=True;MultipleActiveResultSets=True",
+  "IdentityConnection": "Data Source=LAPTOP-7CS9KHVQ;Initial Catalog=StoreManager;Integrated Security=True;MultipleActiveResultSets=True"
+},
+Once the Connection Strings are updated, let’s add the Migrations and Update the Database. Open up package Manager Console and Set the Startup project as the API Project. Set the Default Project as the Infrastructure project (See the red highlighted area in the screenshot below). Run the following commands.add-migration initial2 -context ApplicationDbContext
+add-migration initialIdentity2 -context IdentityContext
+Note that I have already added the Migrations to the Solution Template, which means you really don’t have to do the above mentioned step to generate the Migrations. But in case you lose the Migration file, use the above commands to regenrate them.
 
-## Give a Star ⭐️
-If you found this Implementation helpful or used it in your Projects, do give it a star. Thanks!
-Or, If you are feeling really generous, [Support the Project with a small contribution!](https://www.buymeacoffee.com/codewithmukesh)
+With the Migrations ready, let’s update the database now.
 
-## Contributions / Help Needed
+update-database -context IdentityContext
+update-database -context ApplicationDbContext
 
-It would be great if a few of you could contribute to this project. Here are the points I would love to have some help with.
+Default Roles & Credentials
+As soon you build and run your Awesome Application, default users and roles get added to the database.
 
-- Someone to fix typos on this Readme, or prepare a better one. 
-- Someone to add Localizers throughout the MVC Project.
-- Someone to add Arabic Transalations throughout the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
-- Someone to ensure the code quality.
+Default Roles are as follows.
 
-Let's make this the best .NET 5 Clean Architecture Template.
+SuperAdmin
+Admin
+Moderator
+Basic
+Here are the credentials for the default users.
 
-## Features Included
-
-### ASP.NET Core 5.0 MVC Project
-- Slim Controllers using MediatR Library
-- Permissions Management based on Role Claims
-- Toast Notification (includes support for AJAX Calls too)
-- Serilog
-- ASP.NET Core Identity
-- AdminLTE Bootstrap Template (Clean & SuperFast UI/UX)
-- AJAX for CRUD (Blazing Fast load times)
-- jQuery Datatables
-- Select2
-- Image Optimization
-- Includes Sample CRUD Controllers / Views
-- Active Route Tag Helper for UI
-- RTL Support
-- Complete Localization Support / Multilingual
-- Clean Areas Implementation
-- Dark Mode!
-- Default Users / Roles Seeding at Startup
-- Supports Audit Logging / Activity Logging for Entity Framework Core
-- Automapper
-
-### ASP.NET Core 5.0 WebAPI
-- JWT & Refresh Tokens
-- Swagger
-
-(will be updated soon)
-
-## Support
-
-Has this Project helped you learn something New? or Helped you at work? Do Consider Supporting. Here are a few ways by which you can support.
-
-- Leave a star!
-- Recommend this awesome project to your colleages.
-- Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](https://www.linkedin.com/in/iammukeshm/)
-- Or, If you want to support this project on the long run, consider buying me a coffee.
-
-<a href="https://www.buymeacoffee.com/codewithmukesh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200"  style="height: 60px !important;width: 200px !important;" ></a>
-
-
-## About the Authors
-
-### Mukesh Murugan
-- Blogs at [codewithmukesh.com](https://www.codewithmukesh.com)
-- Facebook - [codewithmukesh](https://www.facebook.com/codewithmukesh)
-- Twitter - [Mukesh Murugan](https://www.twitter.com/iammukeshm)
-- Twitter - [codewithmukesh](https://www.twitter.com/codewithmukesh)
-- Linkedin - [Mukesh Murugan](https://www.linkedin.com/in/iammukeshm/)
+Email – superadmin@gmail.com / Password – 123Pa$$word!
+Email – basic@gmail.com / Password – 123Pa$$word!
